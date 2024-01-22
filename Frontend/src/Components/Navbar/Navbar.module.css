@@ -1,0 +1,22 @@
+.design{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6rem;
+    background-color:#6830c3;
+    color: #fff;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+.special{
+    color:#f27059 ;
+}
+.form{
+    display: flex;
+    gap: 0.5rem;
+    
+
+}
+.form input{
+   color: #444;
+}
