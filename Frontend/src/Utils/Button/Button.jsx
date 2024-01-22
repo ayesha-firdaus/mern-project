@@ -1,0 +1,7 @@
+import React from 'react'
+import styles from "./Button.module.css"
+export default function Button({message,color,background}) {
+  return (
+   <button className={styles.btn} >{message}</button>
+  )
+}

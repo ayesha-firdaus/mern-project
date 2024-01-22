@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+html{
+  font-size: 62.5%;
+}
+.HeadingPrimary{
+  font-size: 4.4rem;
+  letter-spacing:-0.75px;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 1rem;
+  
+}
