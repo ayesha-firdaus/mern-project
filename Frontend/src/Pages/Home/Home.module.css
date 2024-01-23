@@ -1,6 +1,6 @@
 .design{
   
-    background-image:  linear-gradient(rgba(0, 0, 0, 0.281), rgb(54, 58, 59)),url("../../Images/heroImg/h1.jpg");
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.231)),url("../../Images/heroImg/h1.jpg");
   width: 100%;
   height: 95vh;
   background-repeat: no-repeat;

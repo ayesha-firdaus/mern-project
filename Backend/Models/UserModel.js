@@ -1,4 +1,5 @@
-const { default: mongoose } = require("mongoose");
+const {mongoose} = require("mongoose");
+const bcrypt=require("bcryptjs");
 const validator=require("validator");
 const UserSchema=new mongoose.Schema({
     name:{
@@ -28,12 +29,26 @@ const UserSchema=new mongoose.Schema({
         },
         message:"passwordConfirm should match the password",
     }
+ },
+ photo:{
+    type:String,
+    default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fvectors%2Fblank-profile-picture-mystery-man-973460%2F&psig=AOvVaw2KI4n-X1poAmBy-2Xv2uQR&ust=1706021697925000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCLCJsZ6g8YMDFQAAAAAdAAAAABAY"
  }
-
 
 
 },{
     timestamps:true,
+});
+UserSchema.pre('save',async function(next){
+    if(!this.isModified('password'))
+    {
+      return next();
+    }
+    this.password=await bcrypt.hash(this.password,12);
+    this.passwordConfirm=undefined;
+    next();
+
 })
+
 const User=mongoose.model('user',UserSchema);
 module.exports=User;
