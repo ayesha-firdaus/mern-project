@@ -33,8 +33,13 @@ const UserSchema=new mongoose.Schema({
  photo:{
     type:String,
     default:"https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fvectors%2Fblank-profile-picture-mystery-man-973460%2F&psig=AOvVaw2KI4n-X1poAmBy-2Xv2uQR&ust=1706021697925000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCLCJsZ6g8YMDFQAAAAAdAAAAABAY"
+ },
+ passwordChangedAt:{
+    type:Date,
  }
-
+,
+passwordResetToken:String,
+passwordResetExpires:Date,
 
 },{
     timestamps:true,
@@ -49,9 +54,24 @@ UserSchema.pre('save',async function(next){
     next();
 
 })
-// UserSchema.methods.correctPassword=async function(candidataPassword,userPassword){
-//     return await bcryptjs.compare(userPassword,candidataPassword);
-// }
+UserSchema.pre('save',async function(next){
+    if(!this.isModified('password')||this.isNew)
+    {
+        return next();
+    }
+    this.passwordChangedAt=Date.now()-1000;
+    next();
+})
+UserSchema.methods.changedPasswordAt=function(JWTTimestamp)
+{
+    if(this.passwordChangedAt)
+    {
+        const changedTimestamp=parseInt(this.passwordChangedAt.getTime()/1000,10);
+        return JWTTimestamp <changedTimestamp;
+    }
+    return false;
+}
+
 UserSchema.methods.validatePassword=async function(candidatePassword,userPassword){
     return await bcryptjs.compare(candidatePassword,userPassword);
 }
