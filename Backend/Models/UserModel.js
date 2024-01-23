@@ -62,7 +62,7 @@ UserSchema.pre('save',async function(next){
     this.passwordChangedAt=Date.now()-1000;
     next();
 })
-UserSchema.methods.changedPasswordAt=function(JWTTimestamp)
+UserSchema.methods.changedPasswordAfter=function(JWTTimestamp)
 {
     if(this.passwordChangedAt)
     {

@@ -42,13 +42,15 @@ exports.login=CatchAsync(async(req,res,next)=>{
     })
 
 })
-exports.protect=async(req,res,next)=>{
-    const token=req.cookies.access_token;
+exports.protect=CatchAsync(async(req,res,next)=>{
+    const token = req.cookies.access_token;;
+    console.log(token)
     if(!token)
     {
         return next(new AppError("you are not logged in",401));
     }
     const decoded=await promisify (jwt.verify)(token,process.env.jwt_secret);
+  
     console.log(decoded);
     const currentUser=await User.findById(decoded.id);
     if(!currentUser)
@@ -60,7 +62,16 @@ exports.protect=async(req,res,next)=>{
         return next(new AppError("the password has been changed after the token has been issued,please login again",401));
     }
     req.user=currentUser;
+    console.log(currentUser);
     next();
 
+})
+exports.validate=async(req,res,next)=>{
+    const user=req.user;
+    res.status(200).json({
+        status:"success",
+        message:"here is the message",
+        user
+    })
 }
 

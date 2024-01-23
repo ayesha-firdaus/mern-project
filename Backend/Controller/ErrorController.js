@@ -16,10 +16,10 @@ const handleValidationDB=err=>{
     return new AppError(message,400);
 }
 const handleJWTError=()=>{
-    new AppError('Invalid Token please log in again',401);
+   return new AppError('Invalid Token please log in again',401);
 }
 const handleJWTExpiredError=()=>{
-    new AppError("your Token has expired!.Please log in again",401)
+  return   new AppError("your Token has expired!.Please log in again",401)
 }
 const sendErrorDev=(err,res)=>{
     res.status(err.statusCode).json({
@@ -30,7 +30,8 @@ const sendErrorDev=(err,res)=>{
     })
 }
 const  sendErrorProd=(err,res)=>{
-    if(err.operationalError)
+    
+    if(err.isOperational)
     {
         res.status(err.statusCode).json({
             status:err.status,
@@ -45,22 +46,28 @@ const  sendErrorProd=(err,res)=>{
         });
     }
 }
-module.exports=(err,req,res,next)=>{
+module.exports=(err,req,res,next)=>{;
   err.statusCode=err.statusCode||500;
   err.status=err.status||'error';
-  if(process.env.node_env==="development")
+  console.log(process.env.NODE_ENV)
+  console.log(process.env.NODE_ENV.trim() === 'production');
+
+  if(process.env.NODE_ENV.trim()==="development")
   {
      sendErrorDev(err,res);
   }
-  else if(process.env.node_env==="production"){
+  else if(process.env.NODE_ENV.trim() === 'production'){
     let error={...err};
+  
+    console.log(error.name.trim() === 'TokenExpiredError')
     if(error.name==="CastError")
     error=handleCastErrorDB(error);
     if (error.code === 11000) error = handleDuplicateFeildDB(error);
     if (error.name === 'ValidationError')
       error =  handleValidationDB(error);
     if (error.name === 'JsonWebTokenError') error = handleJWTError();
-    if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
+    if (error.name.trim() === 'TokenExpiredError') error = handleJWTExpiredError();
+ 
     sendErrorProd(error,res);
   }
 
