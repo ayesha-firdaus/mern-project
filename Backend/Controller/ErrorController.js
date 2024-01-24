@@ -5,9 +5,8 @@ const handleCastErrorDB=err=>{
     return new AppError(message,404);
 }
 const handleDuplicateFeildDB=err=>{
-    const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
-  console.log(value);
-    const message=`Duplicate feild value:${value}.Please use another value!`;
+   
+    const message=`Duplicate feild value.Please use another value!`;
     return new AppError(message,400);
 }
 const handleValidationDB=err=>{
@@ -58,16 +57,17 @@ module.exports=(err,req,res,next)=>{;
   }
   else if(process.env.NODE_ENV.trim() === 'production'){
     let error={...err};
-  
-    console.log(error.name.trim() === 'TokenExpiredError')
     if(error.name==="CastError")
     error=handleCastErrorDB(error);
-    if (error.code === 11000) error = handleDuplicateFeildDB(error);
-    if (error.name === 'ValidationError')
+    if (error?.code === 11000) error = handleDuplicateFeildDB(error);
+  
+    if (error?.name ==='ValidationError')
       error =  handleValidationDB(error);
-    if (error.name === 'JsonWebTokenError') error = handleJWTError();
-    if (error.name.trim() === 'TokenExpiredError') error = handleJWTExpiredError();
- 
+    if(error && error._message === 'user validation failed' )
+    error =  handleValidationDB(error);
+    if (error?.name?.trim() === 'JsonWebTokenError') error = handleJWTError();
+    if (error?.name?.trim() === 'TokenExpiredError') error = handleJWTExpiredError();
+  
     sendErrorProd(error,res);
   }
 

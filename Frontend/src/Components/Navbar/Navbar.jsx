@@ -1,11 +1,12 @@
 import React from 'react'
 import styles from './Navbar.module.css'
 import Button from '../../Utils/Button/Button'
+import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
    <div className={styles.design}>
     <div>
-        <h3 className='headingTertiary'>Ayesha<span className={styles.special}>Estate</span></h3>
+        <Link to={'/'}><h3 className='headingTertiary'>Ayesha<span className={styles.special}>Estate</span></h3></Link>
     </div>
     <div className={styles.form}>
         <input type='text' placeholder='Enter' />
@@ -13,7 +14,7 @@ export default function Navbar() {
     </div>
     <nav className={styles.navbar}>
       <ul>
-        <li>Sign In</li>
+        <Link to={"/login"}><li>LogIn</li></Link>
       
       </ul>
     </nav>

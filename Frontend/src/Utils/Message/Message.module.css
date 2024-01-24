@@ -1,0 +1,19 @@
+.messageContainer{
+    width: 50rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #333;
+}
+.error{
+    border-bottom:2px solid #f25c54;
+ 
+
+ 
+}
+.success{
+    border-bottom:2px solid rgb(59, 236, 35);
+   
+}
