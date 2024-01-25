@@ -1,0 +1,101 @@
+.design {
+    background: #f2f2f2;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+}
+
+.overall {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 2rem;
+    background-color: #6830c3;
+    max-width: 80rem;
+    border-radius: 5px;
+    padding: 3rem;
+    box-shadow: 0 0 12px #333;
+ 
+}
+
+.imgContainer {
+    width: 100%;
+    cursor: none;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.image {
+    width: 100%;
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the container */
+}
+
+.form {
+    border-radius: 5px;
+    background: #e6e6fa;
+    width: 100%;
+    padding: 2rem;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.inputContainer label {
+    font-size: 2.4rem;
+    color: #6830c3;
+    text-align: center;
+    font-weight: 500;
+}
+
+.inputContainer input {
+    height: 3.5rem;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.8rem;
+    letter-spacing: 1.2px;
+}
+.loginbtn{
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media(max-width:57em)
+{
+   .overall{
+    max-width: 70rem;
+   }
+}
+@media(max-width:47em)
+{
+    .design{
+      margin: 2rem;
+      
+        height: auto;
+        overflow: hidden;
+    }
+
+    .overall{
+
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    cursor: none;
+
+
+    
+  }
+
+  
+
+
+
+
+}

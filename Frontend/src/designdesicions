@@ -1,6 +1,5 @@
-color-#6930c3,#6f73d2,#ff6d00,#f25c54,#f27059
-backgroundcolor-#dee2e6,#343f3e,#37323e
-heading-primary:
+color-#6930c3,#2ecc71,#ecf0f1,#d35400 ,#8e44ad (Purple(Orange) (Light Gray): (Green)
+heading-primary:Mint Green (#e0f8e0),Light Lavender (#e6e6fa),Creamy White (#fff9e6),Light Gray #f2f2f2()
 /* 
 tYpography:
 - Font sizes (px)

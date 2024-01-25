@@ -5,6 +5,7 @@
 }
 html{
   font-size: 62.5%;
+
 }
 .HeadingPrimary{
   font-size: 4.4rem;
@@ -23,4 +24,10 @@ html{
 a{
   text-decoration: none;
   color: inherit;
+}
+@media(max-width:22em){
+  html{
+     font-size: 40%; 
+  }
+
 }

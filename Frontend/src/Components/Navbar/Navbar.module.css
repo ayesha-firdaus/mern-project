@@ -7,6 +7,7 @@
     color: #f0eaf9;
     padding: 2rem;
     font-size: 1.2rem;
+   width: 100%;
 }
 .special{
     color:#f27059 ;
@@ -33,3 +34,71 @@
 .navbar ul li:hover{
     transform: scale(120%);
 }
+.align{
+    display: flex;
+
+}
+
+.menu{
+  color:#f2f2f2;
+  background-color: #6830c3;
+  font-size: 3.6rem;
+  display: none;
+  cursor: pointer;
+
+
+
+}
+
+@media (max-width: 57em) {
+
+.menu{
+    display: block;
+
+}
+.navbar{
+    position: absolute;
+    background-color: #6830c3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    display: none;
+
+ /* opacity: 0;
+    transition: opacity 0.3s ease; */
+}
+.align{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.navbar ul li:hover{
+    transform: scale(150%);
+    color: #333;
+}
+
+.show{
+    display: block;
+}
+.cross{
+    color:#f2f2f2 ;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+.cross:hover{
+    color:#f25c54 ;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+    transform: scale(150%);
+}
+.form{
+    display: none;
+}
+
+  }

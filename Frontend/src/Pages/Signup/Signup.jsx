@@ -131,7 +131,7 @@ console.log(formData)
         <label htmlFor='photo'>Upload an image</label>
         <input type="file"  accept='image/*' onChange={handleChange}  id='photo' />
       </div>
-      <div  className={styles.btn}  ><Button message={"Submit"} /></div>
+      <div  className={styles.btn}  ><Button message={"Submit"} loading={loading} loadingmessage='submitting' /></div>
       
     
     </form>
